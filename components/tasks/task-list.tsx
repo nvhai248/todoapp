@@ -82,10 +82,10 @@ export function TaskList() {
           description: "Task status updated successfully.",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Error",
-        description: "Failed to update task status.",
+        description: `Failed to update task status: ${error.message}`,
         variant: "destructive",
       });
     }
@@ -104,10 +104,10 @@ export function TaskList() {
           description: "Task deleted successfully.",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Error",
-        description: "Failed to delete task.",
+        description: `Failed to delete task: ${error.message}`,
         variant: "destructive",
       });
     }

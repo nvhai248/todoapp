@@ -48,10 +48,10 @@ export function RegisterForm() {
           variant: "destructive",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: `Something went wrong ${error.message}`,
         variant: "destructive",
       });
     } finally {

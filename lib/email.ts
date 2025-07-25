@@ -1,18 +1,20 @@
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransporter({
-  host: process.env.SMTP_HOST,
-  port: Number.parseInt(process.env.SMTP_PORT || "587"),
-  secure: false,
+const transporter = nodemailer.createTransport({
+  service: "gmail",
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASSWORD,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
-})
+});
 
-export async function sendTaskReminder(email: string, taskTitle: string, dueDate: Date) {
+export async function sendTaskReminder(
+  email: string,
+  taskTitle: string,
+  dueDate: Date
+) {
   const mailOptions = {
-    from: process.env.FROM_EMAIL,
+    from: process.env.EMAIL_USER,
     to: email,
     subject: `Task Reminder: ${taskTitle}`,
     html: `
@@ -25,12 +27,12 @@ export async function sendTaskReminder(email: string, taskTitle: string, dueDate
         <p>Best regards,<br>TaskFlow Team</p>
       </div>
     `,
-  }
+  };
 
   try {
-    await transporter.sendMail(mailOptions)
-    console.log(`Reminder email sent to ${email} for task: ${taskTitle}`)
+    await transporter.sendMail(mailOptions);
+    console.log(`Reminder email sent to ${email} for task: ${taskTitle}`);
   } catch (error) {
-    console.error("Error sending email:", error)
+    console.error("Error sending email:", error);
   }
 }

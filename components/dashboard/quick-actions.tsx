@@ -33,7 +33,7 @@ export function QuickActions() {
           >
             <Link href="/dashboard/tasks?filter=today">
               <Calendar className="h-6 w-6" />
-              <span>Today's Tasks</span>
+              <span>Today Tasks</span>
             </Link>
           </Button>
 

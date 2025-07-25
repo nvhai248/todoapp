@@ -101,10 +101,10 @@ export function EditTaskDialog({
           variant: "destructive",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: `Something went wrong ${error.message}`,
         variant: "destructive",
       });
     } finally {
@@ -118,7 +118,7 @@ export function EditTaskDialog({
         <DialogHeader>
           <DialogTitle>Edit Task</DialogTitle>
           <DialogDescription>
-            Make changes to your task. Click save when you're done.
+            Make changes to your task. Click save when you are done.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>

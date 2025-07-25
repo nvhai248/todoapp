@@ -44,10 +44,10 @@ export function LoginForm() {
         });
         router.push("/dashboard");
       }
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: `Something went wrong: ${error.message}`,
         variant: "destructive",
       });
     } finally {
@@ -97,7 +97,7 @@ export function LoginForm() {
           {isLoading ? "Signing in..." : "Sign in"}
         </Button>
         <div className="text-center text-sm">
-          Don't have an account?{" "}
+          Do not have an account?{" "}
           <Link href="/auth/register" className="text-primary hover:underline">
             Sign up
           </Link>
